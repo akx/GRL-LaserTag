@@ -1,0 +1,9 @@
+/release
+/debug
+*.exe
+*.ilk
+*.mov
+*.mp3
+*.obj
+*.pdb
+.DS_Store

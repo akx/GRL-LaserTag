@@ -1,0 +1,63 @@
+
+steps cv addon - 
+
+(note there are images in the steps_images folder to accompany this)
+
+-------------------------------------------------------------
+
+a) add opencv folder to the libs folder
+
+b) add computerVision into the libs/openframeworks folder
+
+now, let's add the contents of the computerVision folder to your project
+
+c) add a new folder in openframeworks folder for the cv code
+(in v.s. this is called a "filter", but it looks like a folder to me)
+
+d) name the folder/filter computerVision
+
+e) right click the folder -> add existing item
+
+f) navigate to the computer vision folder you added in step (b)
+and add all the files
+
+now, let's add a ton of includes/links
+
+for the first part (includes) we will alter both debug and release at the same time
+
+g) right click the properties of the project
+
+h) for the first part (includes) we will alter both configurations (debug and release), this is how you set that
+
+i,j) in c++ > general > additonal include diretories, we will add:
+
+..\..\libs\openFrameworks\computerVision
+..\..\libs\opencv\cv\include
+..\..\libs\opencv\cxcore\include
+
+k) now, we add these link include paths, at
+linker > general > additional library directories:
+add this one:
+..\..\libs\opencv\lib
+
+**** now, for the next step, we will do this individually, for debug and release ****
+(see step h, choose debug, and then release -
+note: the reason for this is the OF debug links to a debug version of 
+rtAudio, and the release version links to a release version of that 
+lib, so the lists of actaul libs are different between releases)
+
+!!!! please be careful with this step, because if you alter them for both configurations
+you can clober all libs that are linked very easily, and you will have alot of trouble!!!
+do it for debug and then release and you should be fine!
+
+add to that list:
+cv.lib
+cxcore.lib
+
+l) now replace the source code for the project with the src provided here
+
+m) now you will need to add the dlls in the dll folder 
+to the both the Debug and Release folders in the project (where the exe is compiled to):
+
+cv097.dll
+cxcore097.dll
