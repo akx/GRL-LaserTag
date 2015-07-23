@@ -1,0 +1,15 @@
+Mouse: set camera and projection quads
+Space: toggle projection quad visibility
+Arrows: control settings
+1-4: toggle brush
+Q/A: brush size
+W/S: brush color
+E/D: brush type
+
+F: toggle fullscreen (2048x768)
+I: toggle single screen mode
+Shift+S: save settings
+Shift+R: reload settings
+Z: clear projection
+Shift+C: open camera setup
+Shift+V: reinitialize video

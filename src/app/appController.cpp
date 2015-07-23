@@ -33,11 +33,9 @@ void appController::setup(){
 		
 		
 	/////// GUI STUFF ////
-	settingsImg.loadImage("sys/settings.png");
-	noticeImg.loadImage("sys/criticalDontEditOrDelete.png");
-	useTrueTypeFont("fonts/courbd.ttf", 10);
-	LT.useTrueTypeFont("fonts/courbd.ttf", 10);
-	GUI.useTrueTypeFont("fonts/courbd.ttf", 10);
+	useTrueTypeFont("fonts/courbd.ttf", 12);
+	LT.useTrueTypeFont("fonts/courbd.ttf", 12);
+	GUI.useTrueTypeFont("fonts/courbd.ttf", 12);
 	
 	//////// NETWORK SETUP ///
 	setupNetwork();
@@ -129,7 +127,7 @@ void appController::loadSettings(){
 	
 	GUI.addTitle("Clear zone settings");
 	GUI.addSetting("Use clear zone",	"CLEAR_ZONE", 		0, 0, 1, 1);
-	GUI.addSetting("Clear sensitivty",	"CLEAR_THRESH", 	1, 1, 9000, 1);			
+	GUI.addSetting("Clear sensitivity",	"CLEAR_THRESH", 	1, 1, 9000, 1);
 	GUI.addSetting("Clear x pos"	,	"CLEAR_X", 			0, 0, 320, 2);
 	GUI.addSetting("Clear y pos"	,	"CLEAR_Y", 			1, 0, 240, 2);
 	GUI.addSetting("Clear width"	,	"CLEAR_W", 			1, 0, 320, 2);
@@ -465,64 +463,94 @@ void appController::releasePoint(){
 	LT.QUAD.releaseAllPoints();
 	IP.releaseAllQuads(); 
 }
+
+void appController::shiftSetting(string name, int delta, int min, int max, bool wrapMax) {
+	int current= GUI.getI(name);
+	current += delta;
+	if (wrapMax) {
+		while (current < 0) current += max;
+		current %= max;
+	}
+	else {
+		if (current < min) current = min;
+		if (current > max) current = max;
+	}
+	GUI.set(name, current);
+}
 	
 //----------------------------------------------------
 void appController::keyPress(int key){
-
-	if(key == 'f'){
-
-		#ifdef TARGET_WIN32
-			if(!full){
-				ofBeginCustomFullscreen(0,0,2048, 768);
-			}else{
-				ofEndCustomFullscreen();
-			}
-			full = !full;
-		#else
+	float w;
+	keyTimer = ofGetElapsedTimeMillis();
+	if (key >= '1' && key < '1' + NUM_BRUSHES) {
+		brushMode = key - '1';
+		GUI.set("BRUSH_MODE", brushMode);
+		return;
+	}
+	switch (key) {
+		case ' ':
+			toggleGui = !toggleGui;
+			break;
+		case OF_KEY_UP:
+			GUI.selectPrev();
+			break;
+		case OF_KEY_DOWN:
+			GUI.selectNext();
+			break;
+		case OF_KEY_RIGHT:
+			GUI.increase();
+			break;
+		case OF_KEY_LEFT:
+			GUI.decrease();
+			break;
+		case 'q':
+			shiftSetting("BRUSH_WIDTH", 1, 0, 100, false);
+			break;
+		case 'a':
+			shiftSetting("BRUSH_WIDTH", -1, 0, 100, false);
+			break;
+		case 'w':
+			shiftSetting("BRUSH_COLOR", +1, 0, NUM_COLORS, true);
+			break;
+		case 's':
+			shiftSetting("BRUSH_COLOR", -1, 0, NUM_COLORS, true);
+			break;
+		case 'e':
+			shiftSetting("BRUSH_NO", +1, 0, 200, false);
+			break;
+		case 'd':
+			shiftSetting("BRUSH_NO", -1, 0, 200, false);
+			break;
+		case 'f':
+#ifdef TARGET_WIN32
+			if (!full) ofBeginCustomFullscreen(0, 0, 2048, 768);
+			else ofEndCustomFullscreen();
+#else
 			ofToggleFullscreen();
-		#endif
-	}
-	else if(key == '-'){
-		singleScreenMode = false;
-	}
-	else if(key == '='){
-		singleScreenMode = true;	
-	}
-	else if(key == 's'){
-		saveSettings();
-	}
-	else if(key == 'r'){
-		reloadSettings();
-	}
-	else if(key == OF_KEY_UP){
-		GUI.selectPrev();
-		keyTimer = ofGetElapsedTimeMillis();
-	}
-	else if(key == OF_KEY_DOWN){
-		GUI.selectNext();
-		keyTimer = ofGetElapsedTimeMillis();
-	}
-	else if(key == OF_KEY_RIGHT){
-		GUI.increase();
-		keyTimer = ofGetElapsedTimeMillis();
-	}
-	else if(key == OF_KEY_LEFT){
-		GUI.decrease();
-		keyTimer = ofGetElapsedTimeMillis();
-	}
-	else if (key == 'c'){
-		LT.openCameraSettings();
-	}
-	else if (key == 'C'){
-		setupVideoTracking();
-	}
-	else if (key == 'd'){
-		setCommonText("status: clearing projection");
-		clearProjectedImage();
-	}else if(key == ' '){
-		toggleGui = !toggleGui;
-	}
+#endif
+			full = !full;
+			break;
+		case 'i':
+			singleScreenMode = !singleScreenMode;
+			break;
+		case 'S':
+			saveSettings();
+			break;
+		case 'R':
+			reloadSettings();
+			break;
+		case 'C':
+			LT.openCameraSettings();
+			break;
+		case 'V':
+			setupVideoTracking();
+			break;
+		case 'z':
+			setCommonText("clearing projection");
+			clearProjectedImage();
+			break;
 
+	}
 }
 
 //----------------------------------------------------
@@ -583,9 +611,6 @@ void appController::drawGUI(){
 	LT.draw(0,0);
 	
 	ofSetColor(255, 255, 255);
-	
-	noticeImg.draw(4, 246);
-	settingsImg.draw(13, 404);
 				
 	glPushMatrix();
 		glTranslatef(50, 5, 0);
@@ -606,7 +631,7 @@ void appController::drawGUI(){
 		
 	glPopMatrix();
 	
-	GUI.drawCollapsedStyle(300, 415, 200, 13.0);
+	GUI.drawCollapsedStyle(5, 415, 200, 13.0);
 	
 	ofSetColor(255,255,255,90);
 	

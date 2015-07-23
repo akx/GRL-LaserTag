@@ -23,6 +23,7 @@
 
 //our brushes
 #define NUM_BRUSHES 4
+#define NUM_COLORS 8
 
 #include "baseBrush.h"  	//our base brush class - you must inhereit this to add your own
 #include "pngBrush.h"  		//the main png brush - allows you to design your own letters - by Theodore Watson
@@ -64,6 +65,7 @@ class appController : public baseGui{
 		
 		void drawGUI();		
 		void drawStatusMessage();
+		void shiftSetting(std::string name, int delta, int min, int max, bool wrapMax);
 		
 		colorManager CM;
 		
@@ -82,10 +84,6 @@ class appController : public baseGui{
 		bool toggleGui, full, singleScreenMode, callibration, bInverted;
 		int camWidth, camHeight, keyTimer;
 		int brushMode;
-		
-		ofImage settingsImg;
-		ofImage noticeImg;
-			
 };
 
 #endif
