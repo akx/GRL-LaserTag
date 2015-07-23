@@ -41,9 +41,6 @@ void appController::setup(){
 	
 	//////// NETWORK SETUP ///
 	setupNetwork();
-	
-	//////// MUSIC PLAYER ////			
-	TP.loadTracks(ofToDataPath("tunes/"));
 				
 	//////// VIDEO TRACKING /
 	camWidth 	= GUI.getI("CAM_WIDTH");
@@ -143,11 +140,6 @@ void appController::loadSettings(){
 	GUI.addSetting("ip: xxx.xxx.xxx.val",	"IP_PT4",		1, 0, 255, 1);
 	GUI.addSetting("port:",					"PORT",			5544, 0, 65000, 1);
 	
-	GUI.addTitle("Music player settings");
-	GUI.addSetting("Play music",	"MUSIC", 	0, 0, 1, 1);	
-	GUI.addSetting("Which track",	"TRACK", 	0, 0, 999, 1);	
-	GUI.addSetting("Volume",		"VOL", 		80, 0, 100, 1);	
-	
 	GUI.addTitle("Camera settings (restart app!)");
 	GUI.addSetting("Use camera", 				"USE_CAMERA", 			0, 0, 1, 1);	
 	GUI.addSetting("Camera #", 					"CAM_ID", 				0, 0, 900, 1);	
@@ -182,8 +174,6 @@ void appController::mainLoop(){
 		handleNetworkSending();
 	} 
 	
-	//for our built in music player
-	manageMusic();
 	
 	//this deals with telling our brushes
 	//all about the settings that are being
@@ -302,42 +292,6 @@ void appController::trackLaser(){
 		LT.calcColorRange(hue, hueThresh, sat, value);	
 	}
 	
-}
-
-//----------------------------------------------------
-void appController::manageMusic(){
-	
-	///////////////////////////////////////////////////////////
-	// our music player :)
-	///////////////////////////////////////////////////////////
-	
-	//update our mp3 player
-	bool playMusic = GUI.getI("MUSIC");
-	int whichTrack = GUI.getI("TRACK");
-	int volume	   = GUI.getI("VOL");
-
-	if(playMusic){
-		TP.unPause();
-		if( whichTrack != TP.getCurrentTrackNo()){
-			
-			if(whichTrack >= TP.getNumTracks()){
-				whichTrack = 0;
-				GUI.set("TRACK", whichTrack);
-			}
-			
-			TP.playTrack(whichTrack);
-			setCommonText("Playing: "+ofToString(TP.getCurrentTrackNo())+" "+TP.getCurrentTrackName());
-		}
-		
-		if( TP.getFinished() ){
-			whichTrack = TP.nextTrack();
-			setCommonText("Playing: "+ofToString(TP.getCurrentTrackNo())+" "+TP.getCurrentTrackName());
-			GUI.set("TRACK", whichTrack);
-		}
-		TP.setVolume(volume);
-	}else{
-		TP.pause();	
-	}
 }
 
 //----------------------------------------------------

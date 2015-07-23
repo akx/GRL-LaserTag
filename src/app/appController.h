@@ -19,7 +19,6 @@
 #include "laserSending.h"
 #include "imageProjection.h"
 #include "baseGui.h"
-#include "trackPlayer.h"
 #include "colorManager.h"
 
 //our brushes
@@ -78,7 +77,6 @@ class appController : public baseGui{
 		laserSending  LS;
 		guiSettingsManager GUI;
 		imageProjection IP;
-		trackPlayer TP;
 		
 		bool toggleGui, full, singleScreenMode, callibration, bInverted;
 		int camWidth, camHeight, keyTimer;

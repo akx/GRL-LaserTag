@@ -65,7 +65,6 @@ void ofExitCallback(){
 
 	//------------------------
 	// try to close FMOD:
-	ofSoundPlayer::closeFmod();
 	//------------------------
 	// try to close quicktime, for non-linux systems:
 

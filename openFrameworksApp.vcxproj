@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{7FD42DF7-442E-479A-BA76-D0022F99702A}</ProjectGuid>
+    <RootNamespace>openFrameworksApp</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>12.0.21005.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(Configuration)\</OutDir>
+    <IntDir>obj\$(Configuration)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(Configuration)\</OutDir>
+    <IntDir>obj\$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.\src\dataOut\brushes\gestureBrush\gmachines_uncurler;.\src\dataOut\brushes\gestureBrush;.\src\dataOut\brushes;.\src\utils;.\src\dataOut;.\src\dataIn;.\src\app\;.\libs\direntForVS;.\libs\openCV\cxcore\include;.\libs\openCV\cvaux\include;.\libs\openCV\cv\include;.\libs\tcpUdpManager;.\libs\xml;.\libs\ofAddons\utils\ofVectorMath;.\libs\ofAddons\utils;.\libs\ofAddons\graphics;.\libs\ofAddons\computerVision;.\libs\ofAddons\communication;.\libs\ofAddons;.\libs\openFrameworks;.\libs\openFrameworks\graphics;.\libs\openFrameworks\app;.\libs\openFrameworks\sound;.\libs\openFrameworks\utils;.\libs\openFrameworks\communication;.\libs\openFrameworks\video;.\libs\glut;.\libs\rtAudio;.\libs\QTDevWin\CIncludes;.\libs\free_type_2.1.4\include;.\libs\free_type_2.1.4\include\freetype2;.\libs\freeImage;.\libs\fmodex\inc;.\libs\videoInput\include;.\libs\glee\include;.\libs\glu;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalOptions>/NODEFAULTLIB:LIBCMT %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;setupapi.lib;glut32.lib;fmodex_vc.lib;videoInput.lib;libfreetype.lib;FreeImage.lib;qtmlClient.lib;dsound.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;GLee.lib;glu32.lib;cv.lib;cvaux.lib;cxcore.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>.\libs\xml\;.\libs\tcpUdpManager\;.\libs\openCV\lib\;.\libs\glut\;.\libs\rtAudio\;.\libs\freeImage\;.\libs\free_type_2.1.4\lib\;.\libs\QTDevWin\Libraries;.\libs\fmodex\lib;.\libs\videoInput\lib;.\libs\glee\lib;.\libs\glu;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>atlthunk.lib;LIBC.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+    </Link>
+    <PostBuildEvent>
+      <Message>adding DLLs and creating data folder</Message>
+      <Command />
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>.\src\dataOut\brushes\gestureBrush\gmachines_uncurler;.\src\dataOut\brushes\gestureBrush;.\src\dataOut\brushes;.\src\utils;.\src\dataOut;.\src\dataIn;.\src\app\;.\libs\direntForVS;.\libs\openCV\cxcore\include;.\libs\openCV\cvaux\include;.\libs\openCV\cv\include;.\libs\tcpUdpManager;.\libs\xml;.\libs\ofAddons\utils\ofVectorMath;.\libs\ofAddons\utils;.\libs\ofAddons\graphics;.\libs\ofAddons\computerVision;.\libs\ofAddons\communication;.\libs\ofAddons;.\libs\openFrameworks;.\libs\openFrameworks\graphics;.\libs\openFrameworks\app;.\libs\openFrameworks\sound;.\libs\openFrameworks\utils;.\libs\openFrameworks\communication;.\libs\openFrameworks\video;.\libs\glut;.\libs\rtAudio;.\libs\QTDevWin\CIncludes;.\libs\free_type_2.1.4\include;.\libs\free_type_2.1.4\include\freetype2;.\libs\freeImage;.\libs\fmodex\inc;.\libs\videoInput\include;.\libs\glee\include;.\libs\glu;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat />
+    </ClCompile>
+    <Link>
+      <AdditionalOptions>/NODEFAULTLIB:LIBCMT %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;setupapi.lib;glut32.lib;rtAudio.lib;fmodex_vc.lib;videoInput.lib;libfreetype.lib;FreeImage.lib;qtmlClient.lib;dsound.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;GLee.lib;glu32.lib;cv.lib;cvaux.lib;cxcore.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>.\libs\xml\;.\libs\tcpUdpManager\;.\libs\openCV\lib\;.\libs\glut\;.\libs\rtAudio\;.\libs\freeImage\;.\libs\free_type_2.1.4\lib\;.\libs\QTDevWin\Libraries;.\libs\fmodex\lib;.\libs\videoInput\lib;.\libs\glee\lib;.\libs\glu;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>atlthunk.lib;LIBC.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <PostBuildEvent>
+      <Message>adding DLLs and creating data folder</Message>
+      <Command />
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\testApp.cpp" />
+    <ClCompile Include="src\app\appController.cpp" />
+    <ClCompile Include="src\app\guiQuad.cpp" />
+    <ClCompile Include="src\app\guiSetting.cpp" />
+    <ClCompile Include="src\app\guiSettingsManager.cpp" />
+    <ClCompile Include="src\dataIn\coordWarping.cpp" />
+    <ClCompile Include="src\dataIn\hitZone.cpp" />
+    <ClCompile Include="src\dataIn\laserTracking.cpp" />
+    <ClCompile Include="src\dataOut\drips.cpp" />
+    <ClCompile Include="src\dataOut\imageProjection.cpp" />
+    <ClCompile Include="src\dataOut\laserSending.cpp" />
+    <ClCompile Include="src\dataOut\brushes\graffLetter.cpp" />
+    <ClCompile Include="src\dataOut\brushes\pngBrush.cpp" />
+    <ClCompile Include="src\dataOut\brushes\vectorBrush.cpp" />
+    <ClCompile Include="src\dataOut\brushes\gestureBrush\gmachines_uncurler\angleStroke.cpp" />
+    <ClCompile Include="src\dataOut\brushes\gestureBrush\gestureBrush.cpp" />
+    <ClCompile Include="src\dataOut\brushes\gestureBrush\gmachines_uncurler\maxStroke.cpp" />
+    <ClCompile Include="src\dataOut\brushes\gestureBrush\gmachines_uncurler\ofVec3f.cpp" />
+    <ClCompile Include="src\dataOut\brushes\gestureBrush\gmachines_uncurler\strokeRenderer.cpp" />
+    <ClCompile Include="src\dataOut\brushes\gestureBrush\gmachines_uncurler\swimmingMachine.cpp" />
+    <ClCompile Include="src\dataOut\brushes\gestureBrush\gmachines_uncurler\swimStroke.cpp" />
+    <ClCompile Include="src\utils\colorManager.cpp" />
+    <ClCompile Include="libs\openFrameworks\app\ofAppRunner.cpp" />
+    <ClCompile Include="libs\openFrameworks\graphics\ofGraphics.cpp" />
+    <ClCompile Include="libs\openFrameworks\graphics\ofImage.cpp" />
+    <ClCompile Include="libs\openFrameworks\graphics\ofTexture.cpp" />
+    <ClCompile Include="libs\openFrameworks\graphics\ofTrueTypeFont.cpp" />
+    <ClCompile Include="libs\openFrameworks\utils\ofMath.cpp" />
+    <ClCompile Include="libs\openFrameworks\utils\ofUtils.cpp" />
+    <ClCompile Include="libs\openFrameworks\video\ofQtUtils.cpp" />
+    <ClCompile Include="libs\openFrameworks\video\ofVideoGrabber.cpp" />
+    <ClCompile Include="libs\openFrameworks\video\ofVideoPlayer.cpp" />
+    <ClCompile Include="libs\openFrameworks\communication\ofSerial.cpp" />
+    <ClCompile Include="libs\xml\tinyxml.cpp" />
+    <ClCompile Include="libs\xml\tinyxmlerror.cpp" />
+    <ClCompile Include="libs\xml\tinyxmlparser.cpp" />
+    <ClCompile Include="libs\tcpUdpManager\TCPManager.cpp" />
+    <ClCompile Include="libs\tcpUdpManager\UDPManager.cpp" />
+    <ClCompile Include="libs\ofAddons\computerVision\ofCvColorImage.cpp" />
+    <ClCompile Include="libs\ofAddons\computerVision\ofCvContourFinder.cpp" />
+    <ClCompile Include="libs\ofAddons\computerVision\ofCvGrayscaleImage.cpp" />
+    <ClCompile Include="libs\ofAddons\utils\ofDirList.cpp" />
+    <ClCompile Include="libs\ofAddons\communication\ofTCPClient.cpp" />
+    <ClCompile Include="libs\ofAddons\communication\ofTCPServer.cpp" />
+    <ClCompile Include="libs\ofAddons\graphics\ofTextureAdv.cpp" />
+    <ClCompile Include="libs\ofAddons\utils\ofThread.cpp" />
+    <ClCompile Include="libs\ofAddons\utils\ofXML.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\testApp.h" />
+    <ClInclude Include="src\app\appController.h" />
+    <ClInclude Include="src\app\baseGui.h" />
+    <ClInclude Include="src\app\guiQuad.h" />
+    <ClInclude Include="src\app\guiSetting.h" />
+    <ClInclude Include="src\app\guiSettingsManager.h" />
+    <ClInclude Include="src\dataIn\coordWarping.h" />
+    <ClInclude Include="src\dataIn\hitZone.h" />
+    <ClInclude Include="src\dataIn\laserTracking.h" />
+    <ClInclude Include="src\dataOut\drips.h" />
+    <ClInclude Include="src\dataOut\imageProjection.h" />
+    <ClInclude Include="src\dataOut\laserSending.h" />
+    <ClInclude Include="src\dataOut\brushes\baseBrush.h" />
+    <ClInclude Include="src\dataOut\brushes\basicVectorBrush.h" />
+    <ClInclude Include="src\dataOut\brushes\graffLetter.h" />
+    <ClInclude Include="src\dataOut\brushes\pngBrush.h" />
+    <ClInclude Include="src\dataOut\brushes\vectorBrush.h" />
+    <ClInclude Include="src\dataOut\brushes\gestureBrush\gmachines_uncurler\angleStroke.h" />
+    <ClInclude Include="src\dataOut\brushes\gestureBrush\gestureBrush.h" />
+    <ClInclude Include="src\dataOut\brushes\gestureBrush\gmachines_uncurler\maxStroke.h" />
+    <ClInclude Include="src\dataOut\brushes\gestureBrush\gmachines_uncurler\ofVec3f.h" />
+    <ClInclude Include="src\dataOut\brushes\gestureBrush\gmachines_uncurler\strokeRenderer.h" />
+    <ClInclude Include="src\dataOut\brushes\gestureBrush\gmachines_uncurler\swimmingMachine.h" />
+    <ClInclude Include="src\dataOut\brushes\gestureBrush\gmachines_uncurler\swimStroke.h" />
+    <ClInclude Include="src\utils\colorManager.h" />
+    <ClInclude Include="src\utils\laserUtils.h" />
+    <ClInclude Include="src\utils\miscUtils.h" />
+    <ClInclude Include="src\utils\winUtils.h" />
+    <ClInclude Include="libs\openFrameworks\ofCore.h" />
+    <ClInclude Include="libs\openFrameworks\ofMain.h" />
+    <ClInclude Include="libs\openFrameworks\app\ofAppGlutGlue.h" />
+    <ClInclude Include="libs\openFrameworks\app\ofAppRunner.h" />
+    <ClInclude Include="libs\openFrameworks\app\ofSimpleApp.h" />
+    <ClInclude Include="libs\openFrameworks\graphics\ofGraphics.h" />
+    <ClInclude Include="libs\openFrameworks\graphics\ofImage.h" />
+    <ClInclude Include="libs\openFrameworks\graphics\ofTexture.h" />
+    <ClInclude Include="libs\openFrameworks\graphics\ofTrueTypefont.h" />
+    <ClInclude Include="libs\openFrameworks\utils\ofConstants.h" />
+    <ClInclude Include="libs\openFrameworks\utils\ofMath.h" />
+    <ClInclude Include="libs\openFrameworks\utils\ofUtils.h" />
+    <ClInclude Include="libs\openFrameworks\video\ofQtUtils.h" />
+    <ClInclude Include="libs\openFrameworks\video\ofVideoGrabber.h" />
+    <ClInclude Include="libs\openFrameworks\video\ofVideoPlayer.h" />
+    <ClInclude Include="libs\openFrameworks\communication\ofSerial.h" />
+    <ClInclude Include="libs\ofAddons\ofAddons.h" />
+    <ClInclude Include="libs\ofAddons\computerVision\ofCvColorImage.h" />
+    <ClInclude Include="libs\ofAddons\computerVision\ofCvConstants.h" />
+    <ClInclude Include="libs\ofAddons\computerVision\ofCvContourFinder.h" />
+    <ClInclude Include="libs\ofAddons\computerVision\ofCvGrayscaleImage.h" />
+    <ClInclude Include="libs\ofAddons\computerVision\ofCvMain.h" />
+    <ClInclude Include="libs\ofAddons\utils\ofDirList.h" />
+    <ClInclude Include="libs\ofAddons\utils\ofVectorMath\ofMatrix3x3.h" />
+    <ClInclude Include="libs\ofAddons\communication\ofTCPClient.h" />
+    <ClInclude Include="libs\ofAddons\communication\ofTCPServer.h" />
+    <ClInclude Include="libs\ofAddons\graphics\ofTextureAdv.h" />
+    <ClInclude Include="libs\ofAddons\utils\ofThread.h" />
+    <ClInclude Include="libs\ofAddons\utils\ofVectorMath\ofVec2f.h" />
+    <ClInclude Include="libs\ofAddons\utils\ofVectorMath\ofVec3f.h" />
+    <ClInclude Include="libs\ofAddons\utils\ofVectorMath\ofVec4f.h" />
+    <ClInclude Include="libs\ofAddons\utils\ofVectorMath\ofVectorMath.h" />
+    <ClInclude Include="libs\ofAddons\utils\ofXML.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

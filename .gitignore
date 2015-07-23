@@ -1,9 +1,12 @@
-/release
-/debug
 *.exe
 *.ilk
 *.mov
 *.mp3
 *.obj
 *.pdb
+*.suo
+*sdf
 .DS_Store
+/debug
+/obj
+/release
