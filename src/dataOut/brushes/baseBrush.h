@@ -47,7 +47,7 @@ class baseBrush{
 			printf("you should never see this message!\n- you need to make your own getImageAsPixels function\n");
 			
 			//we have to return something - so here is some garbage
-			unsigned char tmp[3];
+			static unsigned char tmp[3];
 			return (unsigned char *) tmp;
 		};
 		
