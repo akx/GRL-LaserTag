@@ -68,6 +68,7 @@ bool laserTracking::isClearZoneHit(){
 //requires the app to be restarted - mabe we can change this?
 //---------------------------		
 void laserTracking::setupCamera(int deviceNumber, int width, int height){
+	VG.listDevices();
 	VG.setDeviceID(deviceNumber);
 	VG.initGrabber(width, height);
 	W = VG.width;
