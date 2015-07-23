@@ -6,7 +6,6 @@
 *.pdb
 *.suo
 *sdf
+*user
 .DS_Store
-/debug
 /obj
-/release
