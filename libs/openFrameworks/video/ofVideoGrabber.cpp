@@ -345,6 +345,7 @@ void ofVideoGrabber::close(){
 	
 	if (pixels != NULL){
 		delete pixels;
+		pixels = NULL;
 	}
 	
 	tex.clear();

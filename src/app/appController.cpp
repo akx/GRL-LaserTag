@@ -43,27 +43,36 @@ void appController::setup(){
 	setupNetwork();
 				
 	//////// VIDEO TRACKING /
-	camWidth 	= GUI.getI("CAM_WIDTH");
-	camHeight 	= GUI.getI("CAM_HEIGHT");
-	
+	setupVideoTracking();
+	//lets update our brushes on launch
+	updateBrushSettings(true);
+}
+
+void appController::setupVideoTracking() {
+	LT.unsetup();
+
+	camWidth = GUI.getI("CAM_WIDTH");
+	camHeight = GUI.getI("CAM_HEIGHT");
+
 	//if we have a camera lets see if the requested dimensions
 	//is what we asked for and if not lets update our settings
 	//with the real dimensions
-	if( GUI.getI("USE_CAMERA") ){
+	
+	if (GUI.getI("USE_CAMERA")){
 		LT.setupCamera(GUI.getI("CAM_ID"), camWidth, camHeight);
-		if(LT.W != 0 && LT.H != 0){
-			 camWidth 	= LT.W;
-			 camHeight 	= LT.H;
-			 GUI.set("CAM_WIDTH", camWidth);
-			 GUI.set("CAM_HEIGHT", camHeight);					 
+		if (LT.W != 0 && LT.H != 0){
+			camWidth = LT.W;
+			camHeight = LT.H;
+			GUI.set("CAM_WIDTH", camWidth);
+			GUI.set("CAM_HEIGHT", camHeight);
 		}
 	}
-	//else LT.setupVideo("videos/lasertag_test.mov");
-	
+	else {
+		LT.setupVideo("videos/lasertag_test.mov");
+	}
+
 	LT.setupCV(ofToDataPath("settings/quad.xml"));
-	
-	//lets update our brushes on launch
-	updateBrushSettings(true);
+
 }
 
 //-----------------------------------------------------------
@@ -500,15 +509,20 @@ void appController::keyPress(int key){
 	else if(key == OF_KEY_LEFT){
 		GUI.decrease();
 		keyTimer = ofGetElapsedTimeMillis();
-	}else if(key == 'c'){
+	}
+	else if (key == 'c'){
 		LT.openCameraSettings();
-	}else if(key == 'd'){
+	}
+	else if (key == 'C'){
+		setupVideoTracking();
+	}
+	else if (key == 'd'){
 		setCommonText("status: clearing projection");
 		clearProjectedImage();
 	}else if(key == ' '){
 		toggleGui = !toggleGui;
 	}
-	
+
 }
 
 //----------------------------------------------------

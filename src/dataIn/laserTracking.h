@@ -23,15 +23,9 @@ class laserTracking : public baseGui{
 		void setUseClearZone(bool useClearZone);
 		bool isClearZoneHit();
 				
-		//changing cameras or switching from/to the camera mode
-		//requires the app to be restarted - mabe we can change this?
-		//---------------------------		
 		void setupCamera(int deviceNumber, int width, int height);
-		
-		//same as above - from/to using test movies
-		//requires a restart
-		//---------------------------		
 		void setupVideo(string videoPath);
+		void unsetup();
 		
 		//good for adjusting the color balance, brightness etc
 		//---------------------------		

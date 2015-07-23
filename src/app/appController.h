@@ -53,7 +53,8 @@ class appController : public baseGui{
 		void saveSettings();
 		void reloadSettings();
 		void clearProjectedImage();
-			
+		
+		void setupVideoTracking();
 		void setupNetwork();
 		void handleNetworkSending();
 		void trackLaser();

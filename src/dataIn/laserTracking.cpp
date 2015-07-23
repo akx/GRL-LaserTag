@@ -17,7 +17,7 @@ static int pnpoly (int npol, float *xp, float *yp, float x, float y)
 
 //---------------------------
 laserTracking::laserTracking(){
-
+	pre = NULL;
 	bCameraSetup 	= false;
 	bVideoSetup  	= false;
 	newStroke		= true;
@@ -63,7 +63,26 @@ bool laserTracking::isClearZoneHit(){
 	}
 	return false;
 }
-		
+
+void laserTracking::unsetup() {
+	if (bVideoSetup) {
+		VP.stop();
+		VP.closeMovie();
+		bVideoSetup = false;
+	}
+	if (bCameraSetup) {
+		VG.close();
+		bCameraSetup = false;
+	}
+	//if (VideoFrame.width > 0) VideoFrame.clear();
+	//if (PresenceFrame.width > 0) PresenceFrame.clear();
+	//if (WarpedFrame.width > 0) WarpedFrame.clear();
+	if (pre != NULL) {
+		delete pre;
+		pre = NULL;
+	}
+}
+
 //changing cameras or switching from/to the camera mode
 //requires the app to be restarted - mabe we can change this?
 //---------------------------		
@@ -82,7 +101,7 @@ void laserTracking::setupCamera(int deviceNumber, int width, int height){
 //requires a restart
 //---------------------------		
 void laserTracking::setupVideo(string videoPath){
-	VP.loadMovie(videoPath);
+	if (!VP.loadMovie(videoPath)) return;
 	VP.play(); 
 	VP.setUseTexture(true);
 	W = VP.width;
