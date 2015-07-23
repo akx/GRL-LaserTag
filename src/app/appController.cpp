@@ -58,13 +58,12 @@ void appController::setup(){
 			 GUI.set("CAM_HEIGHT", camHeight);					 
 		}
 	}
-	else LT.setupVideo("videos/lasertag_test.mov");
+	//else LT.setupVideo("videos/lasertag_test.mov");
 	
 	LT.setupCV(ofToDataPath("settings/quad.xml"));
 	
 	//lets update our brushes on launch
 	updateBrushSettings(true);
-
 }
 
 //-----------------------------------------------------------

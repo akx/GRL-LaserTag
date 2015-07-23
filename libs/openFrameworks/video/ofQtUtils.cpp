@@ -15,16 +15,14 @@ void initializeQuicktime(){
 		#ifdef TARGET_WIN32
 			myErr = InitializeQTML(0);
 			if (myErr != noErr){
-				printf("----------------------------------------------------- \n");
-				printf("sorry, there is a problem with quicktime starting up \nplease check!");
-                OF_EXIT_APP(0);
+				printf("QuickTime could not be initialized (InitializeQTML). Video loading will not work.\n");
+				return;
 			}
 		#endif
 		myErr = EnterMovies ();
 		if (myErr != noErr){
-			printf("----------------------------------------------------- \n");
-			printf("sorry, there is a problem with quicktime starting up  \nplease check!");
-			OF_EXIT_APP(0);
+			printf("QuickTime could not be initialized (EnterMovies). Video loading will not work.\n");
+			return;
 		}
 
 		bQuicktimeInitialized = true;

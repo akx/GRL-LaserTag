@@ -102,6 +102,8 @@ void laserTracking::openCameraSettings(){
 //and loads our quad settings from xml
 //---------------------------		
 void laserTracking::setupCV(string filePath){
+	if (W <= 0) W = 320;
+	if (H <= 0) H = 240;
 				
 	//our openCV inits
 	VideoFrame.allocate(W, H);
@@ -186,6 +188,7 @@ void laserTracking::processFrame(float hue, float hueThresh, float sat, float va
 	
 	//add to openCV and warp to our dst image
 	VideoFrame.setFromPixels(pixCam, W, H);
+	if (VideoFrame.width <= 0 || VideoFrame.height <= 0) return; // No frame to process
 	
 	if(accurateQuad){
 		WarpedFrame.warpIntoMe(VideoFrame, QUAD.getScaledQuadPoints(W,H), warpDst);
@@ -676,7 +679,7 @@ void laserTracking::drawClearZone(float x, float y, float w, float h){
 void laserTracking::drawQuadSetupImage(float x, float y, float w, float h){
 	ofSetColor(0xFFFFFF);	
 	ofRect(0,0,w, h);
-	VideoFrame.draw(16, 12, w-32, h-24);
+	if (VideoFrame.width > 0) VideoFrame.draw(16, 12, w-32, h-24);
 	ofSetColor(0xFFFF00);	
 	QUAD.draw(16, 12, w-32, h-24);
 }

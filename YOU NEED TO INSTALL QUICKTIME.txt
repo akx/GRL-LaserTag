@@ -1,4 +1,0 @@
-Make sure you install quicktime player for this app to work.
-
-Also to get the camera working with laser tag set camera = 1 in the camera settings of the app
-hit the 's' key and then restart the app.
