@@ -65,9 +65,6 @@ void appController::setup(){
 	//lets update our brushes on launch
 	updateBrushSettings(true);
 
-	//see if there is a video from GRL to display.
-	webMovieLoaded = VP.loadMovie("http://graffitiresearchlab.com/lasertag2000/helloFromGRL.php");
-	if(webMovieLoaded)VP.play();
 }
 
 //-----------------------------------------------------------
@@ -192,8 +189,6 @@ void appController::mainLoop(){
 	//this is for the singlescreen mode
 	//it will show the current setting for a few seconds
 	if(ofGetElapsedTimeMillis() - keyTimer > STATUS_SHOW_TIME )keyTimer = 0;
-
-	if(webMovieLoaded)VP.idleMovie();
 }
 
 
@@ -546,10 +541,6 @@ void appController::draw(){
 			GUI.drawSelected(10, 720, 200);
 		}
 
-		if(webMovieLoaded){
-			ofSetColor(0xFFFFFF);
-			VP.draw(20, 20, 984, 728);
-		}
 	}
 	else{
 		drawGUI();
@@ -569,12 +560,6 @@ void appController::draw(){
 		else IP.drawProjectionTex(1024, 0, 1024, 768);
 						
 		if(toggleGui)IP.drawProjectionToolHandles(1024, 0, 1024, 768, false, true);
-
-		if(webMovieLoaded){		
-			ofSetColor(0xFFFFFF);
-			VP.draw(20, 20, 984, 728);
-			VP.draw(1044, 20, 984, 728);
-		}
 	}
 
 }
